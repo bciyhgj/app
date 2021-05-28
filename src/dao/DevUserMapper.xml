@@ -7,4 +7,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="getlogin" resultType="devUser">
       select * from dev_user  where devCode=#{devCode}
 </select>
+<select id="getStutes" resultType="dataDictionary">
+      select * from data_dictionary where typeCode="APP_STATUS"
+</select>
+<select id="getFlatform" resultType="dataDictionary">
+      select * from data_dictionary where typeCode="APP_FLATFORM"
+</select>
+<select id="getAll" resultType="appCategory">
+      select * from app_category where parentId=0
+</select>
 </mapper>

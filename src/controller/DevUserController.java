@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import pojo.AppCategory;
+import pojo.DataDictionary;
 import pojo.DevUser;
 
 import service.DevUserService;
@@ -25,6 +29,10 @@ public class DevUserController {
 		
 		return "login";
 	}
+	/**
+	 * @note登录
+	 * 
+	 * */
 	@RequestMapping(value="/doLogin", method = RequestMethod.POST)
 	public String list(@RequestParam("devCode")String devCode, String devPassword, Model model,HttpSession session){
 		DevUser user=devUserService.login(devCode, devPassword);
@@ -45,4 +53,22 @@ public class DevUserController {
 		session.setAttribute(Constants.USER_SESSION, "user");
 		return "main";
 	}
+	/**
+	 * @note 下拉框
+	 * 
+	 * */
+	@RequestMapping(value ="/list")
+	public String appinfolist(String categoryCode, String typeCode, Model mm){
+		//APP状态下拉框
+		List<DataDictionary> list=devUserService.appStutes(typeCode);
+		mm.addAttribute("statusList",list);
+		//所属平台下拉框
+		List<DataDictionary> list1=devUserService.appFlatform(typeCode);
+		mm.addAttribute("flatFormList", list1);
+		//一级分类下拉框
+		List<AppCategory> list2=devUserService.appAll(categoryCode);
+		mm.addAttribute("categoryLevel1List", list2);
+		return "appinfolist";
+	}
+	
 }
