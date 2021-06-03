@@ -21,4 +21,10 @@ public interface DevUserMapper {
 	
 	//一级分类下拉框
 	List<AppCategory> getAll(@Param("categoryCode")String categoryCode);
+	
+	//二级分类下拉框
+	List<AppCategory> getSecond(@Param("id")int id);
+	
+	//三级分类下拉框
+	List<AppCategory> getSan(@Param("id")int id);
 }

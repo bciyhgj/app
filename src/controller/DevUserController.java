@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONArray;
 
 import pojo.AppCategory;
 import pojo.DataDictionary;
@@ -69,6 +72,18 @@ public class DevUserController {
 		List<AppCategory> list2=devUserService.appAll(categoryCode);
 		mm.addAttribute("categoryLevel1List", list2);
 		return "appinfolist";
+	}
+	@RequestMapping(value ="categorylevellist.json",produces=("application/json;charset=utf-8"))
+	@ResponseBody
+	public String appinfo(@RequestParam int pid){
+		List<AppCategory> list=devUserService.appSecond(pid);
+		return JSONArray.toJSONString(list);
+	}
+	@RequestMapping(value ="categorylevellist1.json",produces=("application/json;charset=utf-8"))
+	@ResponseBody
+	public String appinfoSan(@RequestParam int pid){
+		List<AppCategory> list=devUserService.appSan(pid);
+		return JSONArray.toJSONString(list);
 	}
 	
 }

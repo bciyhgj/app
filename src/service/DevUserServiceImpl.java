@@ -47,6 +47,17 @@ public class DevUserServiceImpl implements DevUserService{
 		List<AppCategory> list=devUserMapper.getAll(categoryCode);
 		return list;
 	}
+	//二级分类下拉框
+	@Override
+	public List<AppCategory> appSecond(int id) {
+		List<AppCategory> list1=devUserMapper.getSecond(id);
+		return list1;
+	}
+	@Override
+	public List<AppCategory> appSan(int id) {
+		List<AppCategory> list=devUserMapper.getSan(id);
+		return list;
+	}
 	
 
 }

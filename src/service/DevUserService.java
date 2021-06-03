@@ -21,4 +21,10 @@ public interface DevUserService {
     
     //一级分类下拉框
   	List<AppCategory> appAll(String categoryCode);
+  	
+  	//二级分类下拉框
+  	List<AppCategory> appSecond(int id);
+  	
+  	//三级分类下拉框
+  	List<AppCategory> appSan(int id);
 }
