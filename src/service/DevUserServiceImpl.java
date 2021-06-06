@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import dao.DevUserMapper;
 
 import pojo.AppCategory;
+import pojo.AppInfo;
 import pojo.DataDictionary;
 import pojo.DevUser;
 
@@ -58,6 +59,14 @@ public class DevUserServiceImpl implements DevUserService{
 		List<AppCategory> list=devUserMapper.getSan(id);
 		return list;
 	}
+	@Override
+	public List<AppInfo> addCha(String softwareName, String status,
+			String flatformId, String categoryLevel1, String categoryLevel2,
+			String categoryLevel3) {
+		List<AppInfo> list=devUserMapper.add(softwareName, status, flatformId, categoryLevel1, categoryLevel2, categoryLevel3);
+		return list;
+	}
+	
 	
 
 }

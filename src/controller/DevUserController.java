@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONArray;
 
 import pojo.AppCategory;
+import pojo.AppInfo;
 import pojo.DataDictionary;
 import pojo.DevUser;
 
@@ -73,17 +74,37 @@ public class DevUserController {
 		mm.addAttribute("categoryLevel1List", list2);
 		return "appinfolist";
 	}
+	/**
+	 * @note 二级分类下拉框
+	 * */
 	@RequestMapping(value ="categorylevellist.json",produces=("application/json;charset=utf-8"))
 	@ResponseBody
 	public String appinfo(@RequestParam int pid){
 		List<AppCategory> list=devUserService.appSecond(pid);
 		return JSONArray.toJSONString(list);
 	}
+	/**
+	 * @note 三级分类下拉框
+	 * */
 	@RequestMapping(value ="categorylevellist1.json",produces=("application/json;charset=utf-8"))
 	@ResponseBody
 	public String appinfoSan(@RequestParam int pid){
 		List<AppCategory> list=devUserService.appSan(pid);
 		return JSONArray.toJSONString(list);
+	}
+	@RequestMapping(value ="/dolist")
+	public String add(
+			Model m,
+			@RequestParam(value="softwareName",required=false)String softwareName,
+			@RequestParam(value="queryStatus",required=false)String status,
+			@RequestParam(value="queryFlatformId",required=false)String flatformId,
+			@RequestParam(value="queryCategoryLevel1",required=false)String categoryLevel1,
+			@RequestParam(value="queryCategoryLevel2",required=false)String categoryLevel2,
+			@RequestParam(value="queryCategoryLevel3",required=false)String categoryLevel3){
+		List<AppInfo> list =devUserService.addCha(softwareName, status, flatformId, categoryLevel1, categoryLevel2, categoryLevel3);
+		m.addAttribute("appInfoList", list);
+		return "appinfolist";
+		
 	}
 	
 }

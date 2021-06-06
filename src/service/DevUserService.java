@@ -2,7 +2,9 @@ package service;
 
 import java.util.List;
 
+
 import pojo.AppCategory;
+import pojo.AppInfo;
 import pojo.DataDictionary;
 import pojo.DevUser;
 
@@ -27,4 +29,9 @@ public interface DevUserService {
   	
   	//三级分类下拉框
   	List<AppCategory> appSan(int id);
+  	
+  	//查询
+  	List<AppInfo> addCha(String softwareName,String status,
+	         String flatformId,String categoryLevel1,
+	         String categoryLevel2,String categoryLevel3);
 }

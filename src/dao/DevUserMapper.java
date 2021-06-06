@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import pojo.AppCategory;
+import pojo.AppInfo;
 import pojo.DataDictionary;
 import pojo.DevUser;
 
@@ -27,4 +28,11 @@ public interface DevUserMapper {
 	
 	//三级分类下拉框
 	List<AppCategory> getSan(@Param("id")int id);
+	
+	//查询
+	List<AppInfo> add(@Param("softwareName")String softwareName,@Param("status")String status,
+			         @Param("flatformId")String flatformId,
+			         @Param("categoryLevel1")String categoryLevel1,
+			         @Param("categoryLevel2")String categoryLevel2,
+			         @Param("categoryLevel3")String categoryLevel3);
 }
