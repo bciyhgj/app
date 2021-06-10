@@ -31,7 +31,10 @@ public interface DevUserService {
   	List<AppCategory> appSan(int id);
   	
   	//查询
-  	List<AppInfo> addCha(String softwareName,String status,
+  	List<AppInfo> addCha(int currpageNo,int pageSize,String softwareName,String status,
 	         String flatformId,String categoryLevel1,
 	         String categoryLevel2,String categoryLevel3);
+  	
+  	//总页
+  	int cont();
 }

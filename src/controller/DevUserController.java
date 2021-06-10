@@ -18,6 +18,7 @@ import pojo.AppCategory;
 import pojo.AppInfo;
 import pojo.DataDictionary;
 import pojo.DevUser;
+import pojo.Page;
 
 import service.DevUserService;
 import tools.Constants;
@@ -62,7 +63,14 @@ public class DevUserController {
 	 * 
 	 * */
 	@RequestMapping(value ="/list")
-	public String appinfolist(String categoryCode, String typeCode, Model mm){
+	public String appinfolist(String categoryCode, String typeCode, Model mm,
+			@RequestParam(value="currpageNo",required=false)String currpageNo,
+			@RequestParam(value="softwareName",required=false)String softwareName,
+			@RequestParam(value="queryStatus",required=false)String status,
+			@RequestParam(value="queryFlatformId",required=false)String flatformId,
+			@RequestParam(value="queryCategoryLevel1",required=false)String categoryLevel1,
+			@RequestParam(value="queryCategoryLevel2",required=false)String categoryLevel2,
+			@RequestParam(value="queryCategoryLevel3",required=false)String categoryLevel3){
 		//APP状态下拉框
 		List<DataDictionary> list=devUserService.appStutes(typeCode);
 		mm.addAttribute("statusList",list);
@@ -72,6 +80,20 @@ public class DevUserController {
 		//一级分类下拉框
 		List<AppCategory> list2=devUserService.appAll(categoryCode);
 		mm.addAttribute("categoryLevel1List", list2);
+		
+		int pageSize=5;
+		
+		if(currpageNo==null){
+			currpageNo="1";
+		}
+		int deng=Integer.parseInt(currpageNo);
+		Page page=new Page();
+		page.setPageSize(pageSize);
+		page.setCurrpageNo(deng);
+		page.setTotalCount(devUserService.cont());
+		List<AppInfo> list45 =devUserService.addCha(deng,pageSize,softwareName, status, flatformId, categoryLevel1, categoryLevel2, categoryLevel3);
+		mm.addAttribute("appInfoList", list45);
+		mm.addAttribute("pages", page);
 		return "appinfolist";
 	}
 	/**
@@ -92,7 +114,7 @@ public class DevUserController {
 		List<AppCategory> list=devUserService.appSan(pid);
 		return JSONArray.toJSONString(list);
 	}
-	@RequestMapping(value ="/dolist")
+	/*@RequestMapping(value ="/dolist")
 	public String add(
 			Model m,
 			@RequestParam(value="softwareName",required=false)String softwareName,
@@ -103,8 +125,10 @@ public class DevUserController {
 			@RequestParam(value="queryCategoryLevel3",required=false)String categoryLevel3){
 		List<AppInfo> list =devUserService.addCha(softwareName, status, flatformId, categoryLevel1, categoryLevel2, categoryLevel3);
 		m.addAttribute("appInfoList", list);
-		return "appinfolist";
+		//return "list";
 		
-	}
+		return "list";
+		
+	}*/
 	
 }

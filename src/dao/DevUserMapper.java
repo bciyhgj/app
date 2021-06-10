@@ -30,9 +30,13 @@ public interface DevUserMapper {
 	List<AppCategory> getSan(@Param("id")int id);
 	
 	//查询
-	List<AppInfo> add(@Param("softwareName")String softwareName,@Param("status")String status,
+	List<AppInfo> add(
+			@Param("currpageNo")int currpageNo,@Param("pageSize")int pageSize,
+			         @Param("softwareName")String softwareName,@Param("status")String status,
 			         @Param("flatformId")String flatformId,
 			         @Param("categoryLevel1")String categoryLevel1,
 			         @Param("categoryLevel2")String categoryLevel2,
 			         @Param("categoryLevel3")String categoryLevel3);
+	//总页
+	int cont();
 }

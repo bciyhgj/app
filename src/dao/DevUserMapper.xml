@@ -66,5 +66,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<!-- <if test="devId != null"> and a.devId = #{devId} </if> -->
 		</trim>
 		<!-- order by creationDate DESC limit #{from},#{pageSize} -->
+		limit #{currpageNo},#{pageSize}
+	</select>
+	
+	<select id="cont" resultType="int">
+	      SELECT COUNT(1) from app_info
 	</select>
 </mapper>

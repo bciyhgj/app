@@ -60,11 +60,16 @@ public class DevUserServiceImpl implements DevUserService{
 		return list;
 	}
 	@Override
-	public List<AppInfo> addCha(String softwareName, String status,
+	public List<AppInfo> addCha(int currpageNo,int pageSize,String softwareName, String status,
 			String flatformId, String categoryLevel1, String categoryLevel2,
 			String categoryLevel3) {
-		List<AppInfo> list=devUserMapper.add(softwareName, status, flatformId, categoryLevel1, categoryLevel2, categoryLevel3);
+		currpageNo=(currpageNo-1)*pageSize;
+		List<AppInfo> list=devUserMapper.add(currpageNo,pageSize,softwareName, status, flatformId, categoryLevel1, categoryLevel2, categoryLevel3);
 		return list;
+	}
+	@Override
+	public int cont() {
+		return devUserMapper.cont();
 	}
 	
 	
