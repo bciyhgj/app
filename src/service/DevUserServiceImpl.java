@@ -68,9 +68,12 @@ public class DevUserServiceImpl implements DevUserService{
 		return list;
 	}
 	@Override
-	public int cont() {
-		return devUserMapper.cont();
+	public int cont(String softwareName, String status, String flatformId,
+			String categoryLevel1, String categoryLevel2, String categoryLevel3) {
+		
+		return devUserMapper.cont(softwareName, status, flatformId, categoryLevel1, categoryLevel2, categoryLevel3);
 	}
+	
 	
 	
 

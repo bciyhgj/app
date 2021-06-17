@@ -90,7 +90,7 @@ public class DevUserController {
 		Page page=new Page();
 		page.setPageSize(pageSize);
 		page.setCurrpageNo(deng);
-		page.setTotalCount(devUserService.cont());
+		page.setTotalCount(devUserService.cont(softwareName, status, flatformId, categoryLevel1, categoryLevel2, categoryLevel3));
 		List<AppInfo> list45 =devUserService.addCha(deng,pageSize,softwareName, status, flatformId, categoryLevel1, categoryLevel2, categoryLevel3);
 		mm.addAttribute("appInfoList", list45);
 		mm.addAttribute("pages", page);
@@ -130,5 +130,14 @@ public class DevUserController {
 		return "list";
 		
 	}*/
-	
+	/**
+	 * @note 新增
+	 * 
+	 * */
+	@RequestMapping("/appinfoadd")
+	public String appInfoAdd(AppInfo app,Model m){
+		m.addAttribute(app);
+		return "appinfoadd";
+		
+	}
 }

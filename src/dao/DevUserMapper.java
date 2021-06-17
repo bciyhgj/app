@@ -38,5 +38,9 @@ public interface DevUserMapper {
 			         @Param("categoryLevel2")String categoryLevel2,
 			         @Param("categoryLevel3")String categoryLevel3);
 	//总页
-	int cont();
+	int cont(@Param("softwareName")String softwareName,@Param("status")String status,
+	         @Param("flatformId")String flatformId,
+	         @Param("categoryLevel1")String categoryLevel1,
+	         @Param("categoryLevel2")String categoryLevel2,
+	         @Param("categoryLevel3")String categoryLevel3);
 }

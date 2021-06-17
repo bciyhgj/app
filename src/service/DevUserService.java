@@ -36,5 +36,7 @@ public interface DevUserService {
 	         String categoryLevel2,String categoryLevel3);
   	
   	//总页
-  	int cont();
+  	int cont(String softwareName,String status,
+	         String flatformId,String categoryLevel1,
+	         String categoryLevel2,String categoryLevel3);
 }
